@@ -1,5 +1,6 @@
 package com.example.a.t08_asynctask;
 
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,10 +9,38 @@ import android.view.MenuItem;
 
 public class MainActivity extends ActionBarActivity {
 
+    class MyTask extends AsyncTask<Integer, String, Void>{
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+        }
+
+        @Override
+        protected void onProgressUpdate(String... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected Void doInBackground(Integer... params) {
+            int progress = params[0];
+
+
+            return null;
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        MyTask task = new MyTask();
+        task.execute(30);
     }
 
 
