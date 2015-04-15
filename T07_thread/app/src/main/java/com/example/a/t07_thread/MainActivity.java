@@ -1,7 +1,8 @@
 package com.example.a.t07_thread;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -9,7 +10,17 @@ import android.view.MenuItem;
 public class MainActivity extends ActionBarActivity {
 
     class MyThread extends Thread{
+        public void run(){
+            for(int i=0; i<20; i++){
+                try {
+                    sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
+                Log.d("thread", "count"+i);
+            }
+        }
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
