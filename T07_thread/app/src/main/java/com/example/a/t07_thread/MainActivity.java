@@ -14,7 +14,9 @@ public class MainActivity extends ActionBarActivity {
     TextView textView;
     Handler handler = new Handler(){
         public void handleMessage(Message msg){
-
+            if(msg.what == 1){
+                textView.setText("count : "+msg.arg1);
+            }
         }
     };
 
