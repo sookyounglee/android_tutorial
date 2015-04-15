@@ -6,23 +6,26 @@ import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity {
 
     TextView textView;
+    ProgressBar progressBar;
     Handler handler = new Handler(){
         public void handleMessage(Message msg){
             if(msg.what == 1){
-                textView.setText("count : "+msg.arg1);
+                progressBar.setProgress(msg.arg1);
+                //textView.setText("count : "+msg.arg1);
             }
         }
     };
 
     class MyThread extends Thread{
         public void run(){
-            for(int i=0; i<20; i++){
+            for(int i=0; i<100; i++){
                 try {
                     sleep(1000);
 
@@ -42,6 +45,8 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textView = (TextView)findViewById(R.id.textView);
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
+
 
         //MyThread th = new MyThread();
         //th.start();
