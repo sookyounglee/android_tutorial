@@ -2,7 +2,6 @@ package com.example.a.t07_thread;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -21,7 +20,8 @@ public class MainActivity extends ActionBarActivity {
                     e.printStackTrace();
                 }
 
-                Log.d("thread", "count"+i);
+                //Log.d("thread", "count"+i);
+                textView.setText("count"+i);
             }
         }
     }
