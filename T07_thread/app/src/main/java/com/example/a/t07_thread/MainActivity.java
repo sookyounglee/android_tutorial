@@ -43,8 +43,28 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         textView = (TextView)findViewById(R.id.textView);
 
-        MyThread th = new MyThread();
-        th.start();
+        //MyThread th = new MyThread();
+        //th.start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(int i=0; i<20; i++){
+                    try {
+                        Thread.sleep(1000);
+
+                        Message msg = handler.obtainMessage();
+                        msg.what = 1;
+                        msg.arg1 = i;
+                        handler.sendMessage(msg);
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
     }
 
 
