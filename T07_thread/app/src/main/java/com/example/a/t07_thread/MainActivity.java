@@ -2,6 +2,7 @@ package com.example.a.t07_thread;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,13 +12,23 @@ import android.widget.TextView;
 public class MainActivity extends ActionBarActivity {
 
     TextView textView;
-    Handler handler;
+    Handler handler = new Handler(){
+        public void handleMessage(Message msg){
+
+        }
+    };
 
     class MyThread extends Thread{
         public void run(){
             for(int i=0; i<20; i++){
                 try {
                     sleep(1000);
+
+                    Message msg = handler.obtainMessage();
+                    msg.what = 1;
+                    msg.arg1 = i;
+                    handler.sendMessage(msg);
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
