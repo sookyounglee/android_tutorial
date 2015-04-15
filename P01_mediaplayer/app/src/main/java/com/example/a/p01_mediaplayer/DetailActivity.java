@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import java.io.IOException;
 
@@ -17,11 +20,20 @@ public class DetailActivity extends ActionBarActivity {
 
     MediaPlayer mp = null;
     String path;
+    ProgressBar progressBar;
+    Handler handler = new Handler(){
+        public void handleMessage(Message msg){
+            if(msg.what == 1){
+                progressBar.setProgress(msg.arg1);
+            }
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
         path = Environment.getExternalStorageDirectory().toString();
         path += "/Music";
 
@@ -37,6 +49,7 @@ public class DetailActivity extends ActionBarActivity {
                     mp.setDataSource(path);
                     mp.prepare();
                     mp.start();
+                    progressBar.setMax(mp.getDuration());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -54,6 +67,27 @@ public class DetailActivity extends ActionBarActivity {
                 }
             }
         });
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while( true){
+                    if(mp != null){
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                        Message msg = handler.obtainMessage();
+                        msg.what = 1;
+                        msg.arg1 = mp.getCurrentPosition();
+                        handler.sendMessage(msg);
+                        //progressBar.setProgress(mp.getCurrentPosition());
+                    }
+                }
+            }
+        }).start();
 
 
     }

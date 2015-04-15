@@ -17,4 +17,11 @@
         android:text="STOP" android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_below="@id/btnStop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </RelativeLayout>
