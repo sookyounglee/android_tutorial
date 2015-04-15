@@ -32,11 +32,11 @@ public class MainActivity extends ActionBarActivity {
         @Override
         protected Void doInBackground(Integer... params) {
             int progress = params[0];
-            String val = "count : " + progress;
-            publishProgress(val);
 
             while(progress < 100) {
                 progress++;
+                String val = "count : " + progress;
+                publishProgress(val);
 
                 try {
                     Thread.sleep(100);
@@ -54,7 +54,6 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textView = (TextView)findViewById(R.id.textView);
-
 
         MyTask task = new MyTask();
         task.execute(30);
