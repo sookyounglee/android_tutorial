@@ -1,14 +1,16 @@
 package com.example.a.t08_asynctask;
 
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity {
 
+    TextView textView;
     class MyTask extends AsyncTask<Integer, String, Void>{
 
         @Override
@@ -24,11 +26,24 @@ public class MainActivity extends ActionBarActivity {
         @Override
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
+            textView.setText(values[0]);
         }
 
         @Override
         protected Void doInBackground(Integer... params) {
             int progress = params[0];
+            String val = "count : " + progress;
+            publishProgress(val);
+
+            while(progress < 100) {
+                progress++;
+
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
 
 
             return null;
@@ -38,6 +53,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        textView = (TextView)findViewById(R.id.textView);
+
 
         MyTask task = new MyTask();
         task.execute(30);
