@@ -1,17 +1,61 @@
 package com.example.a.p01_mediaplayer;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
+import java.io.IOException;
 
 
 public class DetailActivity extends ActionBarActivity {
 
+    MediaPlayer mp = null;
+    String path;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        path = Environment.getExternalStorageDirectory().toString();
+        path += "/Music";
+
+        Intent intent = getIntent();
+        path += "/" + intent.getExtras().get("name").toString();
+
+        Button btnPlay = (Button)findViewById(R.id.btnPlay);
+        btnPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mp = new MediaPlayer();
+                try {
+                    mp.setDataSource(path);
+                    mp.prepare();
+                    mp.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        Button btnStop = (Button)findViewById(R.id.btnStop);
+        btnStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mp != null){
+                    mp.stop();
+                    mp.release();
+                    mp = null;
+                }
+            }
+        });
+
+
     }
 
 
