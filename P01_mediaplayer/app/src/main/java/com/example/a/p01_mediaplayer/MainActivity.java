@@ -5,8 +5,11 @@ import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.io.File;
+import java.util.ArrayList;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -21,14 +24,21 @@ public class MainActivity extends ActionBarActivity {
 
         File f = new File(path);
         File[] files = f.listFiles();
+        ArrayList<String> list = new ArrayList<String>();
 
         for(int i=0; i<files.length; i++){
-            files[i].getName();
+            if(files[i].isFile())
+                list.add(files[i].getName());
         }
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_list_item_1,
+                list
+        );
 
-
-
+        ListView listView = (ListView)findViewById(R.id.listView);
+        listView.setAdapter(adapter);
     }
 
 
