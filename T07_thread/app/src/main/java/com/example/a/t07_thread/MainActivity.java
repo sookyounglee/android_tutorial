@@ -1,6 +1,7 @@
 package com.example.a.t07_thread;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 public class MainActivity extends ActionBarActivity {
 
     TextView textView;
+    Handler handler;
 
     class MyThread extends Thread{
         public void run(){
@@ -19,9 +21,6 @@ public class MainActivity extends ActionBarActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-                //Log.d("thread", "count"+i);
-                textView.setText("count"+i);
             }
         }
     }
