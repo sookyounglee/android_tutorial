@@ -24,5 +24,7 @@ public class MyActivity extends ActionBarActivity{
         textID.setText("id: "+strID);
         textPW.setText("pw: "+strPW);
     }
+
+
 }
 

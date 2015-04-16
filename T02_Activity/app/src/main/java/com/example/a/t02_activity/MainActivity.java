@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 public class MainActivity extends ActionBarActivity {
 
+    private static final int GET_STRING = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,11 +31,19 @@ public class MainActivity extends ActionBarActivity {
                 Intent i = new Intent(MainActivity.this, MyActivity.class);
                 i.putExtra("myID", strID);
                 i.putExtra("myPW", strPW);
-                startActivity(i);
+                //startActivity(i);
+                startActivityForResult(i, GET_STRING);
             }
         });
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == GET_STRING){
+
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

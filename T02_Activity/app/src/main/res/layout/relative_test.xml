@@ -20,6 +20,13 @@
         android:layout_height="wrap_content"
         android:text="hello layout2"
         android:textSize="30sp"/>
+    <Button
+        android:id="@+id/btnClose"
+        android:layout_alignLeft="@id/text2"
+        android:layout_below="@id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="close"/>
 
 
 </RelativeLayout>
