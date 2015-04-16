@@ -16,6 +16,18 @@ public class MainActivity extends ActionBarActivity {
 
         TextView textView = (TextView) findViewById(R.id.textView);
 
+        T11SQLiteHandler dbHandler = new T11SQLiteHandler(this);
+
+        dbHandler.insert("kim", 11, "seoul");
+        dbHandler.insert("park", 12, "pusan");
+        dbHandler.insert("lee", 13, "인천");
+        dbHandler.insert("hong", 14, "대구");
+
+        dbHandler.updateAge("kim", 15);
+        dbHandler.delete("park");
+
+        String result = dbHandler.getStudentData();
+        textView.setText(result);
     }
 
 
