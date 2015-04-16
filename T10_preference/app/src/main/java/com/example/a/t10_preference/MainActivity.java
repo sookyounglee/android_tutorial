@@ -20,8 +20,20 @@ public class MainActivity extends ActionBarActivity {
         editText = (EditText)findViewById(R.id.editText);
 
         SharedPreferences pref = getSharedPreferences("MyPref", MODE_PRIVATE);
+        String str = pref.getString("name", "");
+
+        editText.setText(str);
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        SharedPreferences pref = getSharedPreferences("MyPref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("name", editText.getText().toString());
+        editor.commit();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
