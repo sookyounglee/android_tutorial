@@ -1,9 +1,14 @@
 package com.example.a.p02_menolist;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,6 +17,18 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        MemoDBHandler dbHandler = new MemoDBHandler(this);
+        ArrayList<String> list = dbHandler.getAllMemoTitle();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, list);
+
+        ListView listView = (ListView)findViewById(R.id.listView);
+        listView.setAdapter(adapter);
+
+
+
     }
 
 
@@ -31,6 +48,8 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent i = new Intent(this, MemoActivity.class);
+            startActivity(i);
             return true;
         }
 

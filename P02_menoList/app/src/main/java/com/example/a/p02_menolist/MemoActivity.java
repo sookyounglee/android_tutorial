@@ -23,13 +23,15 @@ public class MemoActivity extends ActionBarActivity {
         editDate = (EditText)findViewById(R.id.editDate);
         editDate.setText(new Date().toString());
         editMemo = (EditText)findViewById(R.id.editMemo);
-
+        final MemoDBHandler dbHandler = new MemoDBHandler(this);
 
         Button btnSave = (Button)findViewById(R.id.btnSave);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String memo = editMemo.getText().toString();
+                String date = editDate.getText().toString();
+                dbHandler.insert(memo, date, "");
             }
         });
 
