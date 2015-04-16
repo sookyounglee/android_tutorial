@@ -1,6 +1,7 @@
 package com.example.a.t14_camera;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,6 +27,8 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
         path = Environment.getExternalStorageDirectory().toString()+"/imageTest.jpg";
         Button btnTake = (Button)findViewById(R.id.btnTake);
         btnTake.setOnClickListener(new View.OnClickListener() {
@@ -48,11 +51,12 @@ public class MainActivity extends ActionBarActivity {
                 try {
                     bitmap = MediaStore.Images.Media.getBitmap(
                         getContentResolver(), Uri.fromFile(file));
+
+                    ImageView img = (ImageView)findViewById(R.id.imageView);
+                    img.setImageBitmap(bitmap);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                ImageView img = (ImageView)findViewById(R.id.imageView);
-                img.setImageBitmap(bitmap);
             }
         }
     }
