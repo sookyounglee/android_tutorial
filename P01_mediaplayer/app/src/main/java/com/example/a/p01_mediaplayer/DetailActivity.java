@@ -41,7 +41,6 @@ public class DetailActivity extends ActionBarActivity {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                mp.seekTo(progress);
             }
 
             @Override
@@ -51,6 +50,7 @@ public class DetailActivity extends ActionBarActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+                mp.seekTo( seekBar.getProgress() );
                 mp.start();
             }
         });
