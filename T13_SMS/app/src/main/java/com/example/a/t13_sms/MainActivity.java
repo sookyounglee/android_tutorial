@@ -1,17 +1,34 @@
 package com.example.a.t13_sms;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    EditText editNumber;
+    EditText editMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        editNumber = (EditText) findViewById(R.id.editNumber);
+        editMessage = (EditText) findViewById(R.id.editMessage);
+        Button btnSend = (Button) findViewById(R.id.btnSend);
+
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
 
