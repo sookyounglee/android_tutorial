@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.SeekBar;
 
 import java.io.IOException;
 
@@ -21,10 +22,12 @@ public class DetailActivity extends ActionBarActivity {
     MediaPlayer mp = null;
     String path;
     ProgressBar progressBar;
+    SeekBar seekBar;
     Handler handler = new Handler(){
         public void handleMessage(Message msg){
             if(msg.what == 1){
                 progressBar.setProgress(msg.arg1);
+                seekBar.setProgress(msg.arg1);
             }
         }
     };
@@ -34,6 +37,24 @@ public class DetailActivity extends ActionBarActivity {
         setContentView(R.layout.activity_detail);
 
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        seekBar = (SeekBar)findViewById(R.id.seekBar);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                mp.seekTo(progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                mp.pause();
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                mp.start();
+            }
+        });
+
         path = Environment.getExternalStorageDirectory().toString();
         path += "/Music";
 
@@ -50,6 +71,7 @@ public class DetailActivity extends ActionBarActivity {
                     mp.prepare();
                     mp.start();
                     progressBar.setMax(mp.getDuration());
+                    seekBar.setMax(mp.getDuration());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -84,6 +106,7 @@ public class DetailActivity extends ActionBarActivity {
                         msg.arg1 = mp.getCurrentPosition();
                         handler.sendMessage(msg);
                         //progressBar.setProgress(mp.getCurrentPosition());
+                        //seekBar.setProgress(mp.getCurrentPosition());
                     }
                 }
             }
