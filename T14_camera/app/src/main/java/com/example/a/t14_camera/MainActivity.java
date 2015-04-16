@@ -3,6 +3,7 @@ package com.example.a.t14_camera;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -15,7 +16,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.File;
-import java.io.IOException;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -45,16 +45,17 @@ public class MainActivity extends ActionBarActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == TAKE_PICTURE){
             if(resultCode == RESULT_OK){
-                File file = new File(path);
+
                 Bitmap bitmap = null;
 
                 try {
-                    bitmap = MediaStore.Images.Media.getBitmap(
-                        getContentResolver(), Uri.fromFile(file));
+                    //bitmap = MediaStore.Images.Media.getBitmap(
+                    //    getContentResolver(), Uri.fromFile(file));
+                    bitmap = BitmapFactory.decodeFile(path);
 
                     ImageView img = (ImageView)findViewById(R.id.imageView);
                     img.setImageBitmap(bitmap);
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
