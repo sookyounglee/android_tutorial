@@ -2,11 +2,13 @@ package com.example.a.t13_sms;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -26,7 +28,12 @@ public class MainActivity extends ActionBarActivity {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SmsManager manager = SmsManager.getDefault();
+                String number = editNumber.getText().toString();
+                String message = editMessage.getText().toString();
+                manager.sendTextMessage(number, null, message, null, null);
 
+                Toast.makeText(MainActivity.this, "msg : "+message, Toast.LENGTH_LONG).show();
             }
         });
     }
