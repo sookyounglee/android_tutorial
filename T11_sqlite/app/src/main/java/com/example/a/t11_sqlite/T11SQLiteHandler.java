@@ -50,6 +50,10 @@ public class T11SQLiteHandler {
 
         while (c.moveToNext()){
             int id = c.getInt( c.getColumnIndex("id") );
+            String name = c.getString( c.getColumnIndex("name") );
+            int age = c.getInt( c.getColumnIndex("age") );
+            String address = c.getString( c.getColumnIndex("address"));
+
         }
 
     }
