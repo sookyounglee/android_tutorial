@@ -3,6 +3,8 @@ package com.example.a.t02_activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -23,6 +25,16 @@ public class MyActivity extends ActionBarActivity{
 
         textID.setText("id: "+strID);
         textPW.setText("pw: "+strPW);
+
+        Button btnClose = (Button)findViewById(R.id.btnClose);
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent();
+                i.putExtra("result", "my result");
+                setResult(RESULT_OK, i);
+            }
+        });
     }
 
 
