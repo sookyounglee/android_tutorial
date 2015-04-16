@@ -28,7 +28,16 @@ public class T11SQLiteHandler {
     }
 
     public void updateAge(String name, int newAge){
+        ContentValues updateValues = new ContentValues();
+        updateValues.put("age", newAge);
 
+        db = helper.getWritableDatabase();
+        db.update("student", updateValues, "name = ?", new String[]{name});
+    }
+
+    public void delete(String name){
+        db = helper.getWritableDatabase();
+        db.delete("student", "name = ?", new String[]{name});
     }
 
 }
