@@ -1,13 +1,14 @@
 package com.example.a.t02_activity;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -41,7 +42,10 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == GET_STRING){
-
+            if(resultCode == RESULT_OK){
+                String str = data.getExtras().get("result").toString();
+                Toast.makeText(MainActivity.this, "result : "+str, Toast.LENGTH_LONG).show();
+            }
         }
     }
 
