@@ -33,6 +33,7 @@ public class MyActivity extends ActionBarActivity{
                 Intent i = new Intent();
                 i.putExtra("result", "my result");
                 setResult(RESULT_OK, i);
+                finish();
             }
         });
     }
