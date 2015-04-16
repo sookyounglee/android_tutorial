@@ -48,6 +48,9 @@ public class T11SQLiteHandler {
         String sql = "select * from student";
         Cursor c = db.rawQuery(sql, null);
 
+        while (c.moveToNext()){
+            int id = c.getInt( c.getColumnIndex("id") );
+        }
 
     }
 }
