@@ -1,17 +1,39 @@
 package com.example.a.p02_menolist;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+import java.util.Date;
 
 
 public class MemoActivity extends ActionBarActivity {
 
+    EditText editDate;
+    EditText editMemo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meno);
+
+        editDate = (EditText)findViewById(R.id.editDate);
+        editDate.setText(new Date().toString());
+        editMemo = (EditText)findViewById(R.id.editMemo);
+
+
+        Button btnSave = (Button)findViewById(R.id.btnSave);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
     }
 
 
