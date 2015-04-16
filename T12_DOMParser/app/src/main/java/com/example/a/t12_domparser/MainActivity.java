@@ -32,11 +32,16 @@ public class MainActivity extends ActionBarActivity {
 
                 NodeList hourList = dataNode.getElementsByTagName("hour");
                 Element hourNodeList = (Element)hourList.item(0); // <hour>15</hour>
-
                 NodeList hourNode = hourNodeList.getChildNodes();
+                String hourValue = hourNode.item(0).getNodeValue();// 15
+
+                NodeList wfList = dataNode.getElementsByTagName("wfKor");
+                Element wfNodeList = (Element)wfList.item(0); // <wfKor>비</wfKor>
+                NodeList wfNode = wfNodeList.getChildNodes();
+                String wfKorValue = wfNode.item(0).getNodeValue();// 비
+
+                str += hourValue +"시 : "+wfKorValue+"\n";
             }
-
-
 
             textView.setText(str);
         }
