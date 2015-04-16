@@ -7,6 +7,7 @@ import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.PersistableBundle;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -20,12 +21,22 @@ import java.io.File;
 
 public class MainActivity extends ActionBarActivity {
 
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        Bundle bundle = new Bundle();
+        bundle.putString("path", path);
+
+        outState.putBundle("saved_data", bundle);
+    }
+
     private static final int TAKE_PICTURE = 1;
     String path;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         path = Environment.getExternalStorageDirectory().toString()+"/imageTest.jpg";
         Button btnTake = (Button)findViewById(R.id.btnTake);
@@ -37,6 +48,26 @@ public class MainActivity extends ActionBarActivity {
                 startActivityForResult(i, TAKE_PICTURE);
             }
         });
+
+        if(savedInstanceState != null){
+            savedInstanceState.getBundle("saved_data");
+
+            Bitmap bitmap = null;
+
+            try {
+                //bitmap = MediaStore.Images.Media.getBitmap(
+                //    getContentResolver(), Uri.fromFile(file));
+                bitmap = BitmapFactory.decodeFile(path);
+
+                ImageView img = (ImageView)findViewById(R.id.imageView);
+                bitmap = rotateImg(bitmap, 90);
+                img.setImageBitmap(bitmap);
+                img.invalidate();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 
     @Override
@@ -54,6 +85,7 @@ public class MainActivity extends ActionBarActivity {
                     ImageView img = (ImageView)findViewById(R.id.imageView);
                     bitmap = rotateImg(bitmap, 90);
                     img.setImageBitmap(bitmap);
+                    img.invalidate();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -67,7 +99,7 @@ public class MainActivity extends ActionBarActivity {
             m.setRotate(degree, bitmap.getWidth()/2, bitmap.getHeight()/2);
 
             Bitmap converted = Bitmap.createBitmap(bitmap,0,0,
-                    bitmap.getWidth(), bitmap.getHeight(),m, true);
+                    bitmap.getWidth(), bitmap.getHeight(),m, false);
             if(bitmap != converted){
                 bitmap.recycle();
                 bitmap = converted;
