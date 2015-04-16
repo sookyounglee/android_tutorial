@@ -27,6 +27,9 @@ public class T11SQLiteHandler {
         db.insert("student", null, values);
     }
 
+    public void updateAge(String name, int newAge){
+
+    }
 
 }
 
