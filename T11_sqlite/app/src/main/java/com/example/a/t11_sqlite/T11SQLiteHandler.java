@@ -2,6 +2,7 @@ package com.example.a.t11_sqlite;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
@@ -40,6 +41,15 @@ public class T11SQLiteHandler {
         db.delete("student", "name = ?", new String[]{name});
     }
 
+    public String getStudentData(){
+        db = helper.getReadableDatabase();
+
+        //Cursor c = db.query("student", null, null, null, null,null, null);
+        String sql = "select * from student";
+        Cursor c = db.rawQuery(sql, null);
+
+
+    }
 }
 
 
