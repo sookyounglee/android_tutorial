@@ -1,9 +1,9 @@
 package com.example.a.t14_camera;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -26,8 +26,6 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         path = Environment.getExternalStorageDirectory().toString()+"/imageTest.jpg";
         Button btnTake = (Button)findViewById(R.id.btnTake);
@@ -54,12 +52,29 @@ public class MainActivity extends ActionBarActivity {
                     bitmap = BitmapFactory.decodeFile(path);
 
                     ImageView img = (ImageView)findViewById(R.id.imageView);
+                    bitmap = rotateImg(bitmap, 90);
                     img.setImageBitmap(bitmap);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }
+    }
+
+    private Bitmap rotateImg(Bitmap bitmap, int degree){
+        if(degree !=0 && bitmap !=null){
+            Matrix m = new Matrix();
+            m.setRotate(degree, bitmap.getWidth()/2, bitmap.getHeight()/2);
+
+            Bitmap converted = Bitmap.createBitmap(bitmap,0,0,
+                    bitmap.getWidth(), bitmap.getHeight(),m, true);
+            if(bitmap != converted){
+                bitmap.recycle();
+                bitmap = converted;
+            }
+        }
+
+        return bitmap;
     }
 
     @Override
