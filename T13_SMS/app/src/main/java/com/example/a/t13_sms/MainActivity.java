@@ -3,6 +3,8 @@ package com.example.a.t13_sms;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.telephony.SmsManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +25,27 @@ public class MainActivity extends ActionBarActivity {
 
         editNumber = (EditText) findViewById(R.id.editNumber);
         editMessage = (EditText) findViewById(R.id.editMessage);
+        editMessage.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length() > 80){
+                    Toast.makeText(MainActivity.this,
+                            "메세지는 80byte까지만 입력가능합니다.",
+                            Toast.LENGTH_LONG
+                    ).show();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         Button btnSend = (Button) findViewById(R.id.btnSend);
 
         btnSend.setOnClickListener(new View.OnClickListener() {
