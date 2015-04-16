@@ -48,14 +48,17 @@ public class T11SQLiteHandler {
         String sql = "select * from student";
         Cursor c = db.rawQuery(sql, null);
 
+        String result = "";
         while (c.moveToNext()){
             int id = c.getInt( c.getColumnIndex("id") );
             String name = c.getString( c.getColumnIndex("name") );
             int age = c.getInt( c.getColumnIndex("age") );
             String address = c.getString( c.getColumnIndex("address"));
 
+            result += "id :"+id+" name : "+name+" age : "+age+ "address : "+address+"\n";
         }
 
+        return  result;
     }
 }
 
