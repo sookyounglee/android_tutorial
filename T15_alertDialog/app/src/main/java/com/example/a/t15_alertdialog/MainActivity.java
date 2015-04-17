@@ -61,7 +61,15 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 ProgressDialog dialog = ProgressDialog.show(
-                        MainActivity.this,"", "로딩중", true, true);
+                        MainActivity.this,"", "로딩중", true, false);
+
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                dialog.dismiss();
             }
         });
     }
