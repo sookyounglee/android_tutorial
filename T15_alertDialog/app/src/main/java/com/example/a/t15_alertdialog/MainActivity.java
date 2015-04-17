@@ -2,6 +2,7 @@ package com.example.a.t15_alertdialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -52,6 +53,15 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 showDialog(DIALOG_TEST);
+            }
+        });
+
+        Button btnProgressDialog = (Button)findViewById(R.id.btnProgressDialog);
+        btnProgressDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProgressDialog dialog = ProgressDialog.show(
+                        MainActivity.this,"", "로딩중", true, true);
             }
         });
     }
