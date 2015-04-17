@@ -10,12 +10,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
 
     private static final int DIALOG_TEST = 1;
+    private static final int DIALOG_CUSTOM = 2;
+
     @Override
     protected Dialog onCreateDialog(int id) {
         switch (id){
@@ -38,6 +41,13 @@ public class MainActivity extends ActionBarActivity {
 
                 AlertDialog dialog = builder.create();
                 return dialog;
+
+            case DIALOG_CUSTOM:
+                Dialog customDialog = new Dialog(MainActivity.this);
+                customDialog.setContentView(R.layout.custom_dialog);
+                TextView customText = (TextView)customDialog.findViewById(R.id.customText);
+                customText.setText("Hello world");
+                return customDialog;
         }
 
         return null;
