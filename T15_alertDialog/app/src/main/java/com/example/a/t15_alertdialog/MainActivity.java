@@ -77,6 +77,9 @@ public class MainActivity extends ActionBarActivity {
                 }).start();
             }
         });
+
+        Button btnProgress2 = (Button)findViewById(R.id.btnProgressDialog2);
+
     }
 
 
