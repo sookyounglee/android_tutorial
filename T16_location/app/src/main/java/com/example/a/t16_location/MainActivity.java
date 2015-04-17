@@ -44,6 +44,8 @@ public class MainActivity extends ActionBarActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                EditText editAddress = (EditText)findViewById(R.id.editAddress);
+
             }
         });
 
