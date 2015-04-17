@@ -79,7 +79,16 @@ public class MainActivity extends ActionBarActivity {
         });
 
         Button btnProgress2 = (Button)findViewById(R.id.btnProgressDialog2);
-
+        btnProgress2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProgressDialog dialog = new ProgressDialog(MainActivity.this);
+                dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                dialog.setMessage("Now Loading...");
+                dialog.show();
+                dialog.setProgress(30);
+            }
+        });
     }
 
 
