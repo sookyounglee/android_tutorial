@@ -57,7 +57,12 @@ public class MainActivity extends ActionBarActivity {
             }
         };
 
-        manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0,0, listener);
+        manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
+                0, 0, listener);
+        manager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                0, 0, listener);
+        manager.requestLocationUpdates(LocationManager.PASSIVE_PROVIDER,
+                0, 0, listener);
     }
 
 
