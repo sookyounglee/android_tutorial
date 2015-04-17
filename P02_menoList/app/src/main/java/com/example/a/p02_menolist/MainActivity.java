@@ -2,6 +2,7 @@ package com.example.a.p02_menolist;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -48,7 +50,10 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            String path = Environment.getExternalStorageDirectory().toString() + "/" + UUID.randomUUID() + ".jpg";
+
             Intent i = new Intent(this, MemoActivity.class);
+            i.putExtra("path", path);
             startActivity(i);
             return true;
         }
