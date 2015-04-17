@@ -28,9 +28,6 @@ public class MainActivity extends ActionBarActivity {
 
         ListView listView = (ListView)findViewById(R.id.listView);
         listView.setAdapter(adapter);
-
-
-
     }
 
 
@@ -50,7 +47,8 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            String path = Environment.getExternalStorageDirectory().toString() + "/" + UUID.randomUUID() + ".jpg";
+            String path = Environment.getExternalStorageDirectory().toString()
+                    + "/" + UUID.randomUUID() + ".jpg";
 
             Intent i = new Intent(this, MemoActivity.class);
             i.putExtra("path", path);

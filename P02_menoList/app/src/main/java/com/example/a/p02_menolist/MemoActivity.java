@@ -24,8 +24,6 @@ public class MemoActivity extends ActionBarActivity {
     EditText editDate;
     EditText editMemo;
     private static final int TAKE_PICTURE = 1;
-
-
     String path;
 
     @Override
@@ -69,7 +67,7 @@ public class MemoActivity extends ActionBarActivity {
 
     @Override
     protected void onResume() {
-    super.onResume();
+        super.onResume();
 
         Bitmap bitmap = null;
 
