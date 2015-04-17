@@ -10,4 +10,63 @@
         android:text="@string/hello_world" android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewLat"
+        android:layout_below="@id/textView"
+        android:textSize="30sp"
+        android:text="위도 : "/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editLat"
+        android:layout_toRightOf="@id/textViewLat"
+        android:layout_alignTop="@id/textViewLat"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewLon"
+        android:layout_below="@id/textViewLat"
+        android:textSize="30sp"
+        android:text="경도 : "/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/textViewLon"
+        android:layout_alignTop="@id/textViewLon"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:text="변환"
+        android:layout_below="@id/textViewLon"
+        android:id="@+id/btnRevGeocode"/>
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:text="주소 : "
+        android:layout_below="@id/btnRevGeocode"
+        android:id="@+id/textViewAddress"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/textViewAddress"
+        android:layout_alignTop="@id/textViewAddress"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewAddress"
+        android:id="@+id/btnGeocode"
+        android:textSize="30sp"
+        android:text="변환"/>
 </RelativeLayout>
+
+
+
+
+
