@@ -14,22 +14,38 @@ public class MyService extends Service {
         return null;
     }
 
+    boolean flag;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        flag = true;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        flag = false;
+    }
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 int i = 0;
-                while(i<20)
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                while (flag) {
+                    i++;
+
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Log.d("MyService", "count : " + i);
                 }
-                Log.d("MyService", "count : "+i);
             }
         }).start();
-
-
+        return START_STICKY;
     }
 }
