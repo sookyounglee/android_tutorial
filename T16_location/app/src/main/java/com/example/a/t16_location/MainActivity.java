@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.List;
@@ -23,6 +26,14 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         coder = new Geocoder(this);
+        Button btnRevGeocode = (Button)findViewById(R.id.btnRevGeocode);
+        btnRevGeocode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText editLat = (EditText)findViewById(R.id.editLat);
+                EditText editLon = (EditText)findViewById(R.id.editL)
+            }
+        });
 
         LocationManager manager = (LocationManager) getSystemService(LOCATION_SERVICE);
         textView = (TextView)findViewById(R.id.textView);
