@@ -1,5 +1,7 @@
 package com.example.a.t16_location;
 
+import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -12,13 +14,14 @@ import java.util.List;
 
 public class MainActivity extends ActionBarActivity {
 
+    TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         LocationManager manager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        TextView textView = (TextView)findViewById(R.id.textView);
+        textView = (TextView)findViewById(R.id.textView);
         String str = "";
 
         List<String> providers = manager.getAllProviders();
@@ -29,6 +32,32 @@ public class MainActivity extends ActionBarActivity {
 
         textView.setText(str);
 
+        LocationListener listener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                String strLoc = "위도 : "+location.getLatitude() + " 경도 : "+
+                        location.getLongitude() + " 고도 : "+ location.getAltitude();
+
+                textView.setText(strLoc);
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+        };
+
+        manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0,0, listener);
     }
 
 
