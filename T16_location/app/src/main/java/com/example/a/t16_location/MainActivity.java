@@ -51,6 +51,24 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+        Button btnGeocode = (Button)findViewById(R.id.btnGeocode);
+        btnGeocode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Address> list = null;
+                String address = ((EditText)findViewById(R.id.editAddress)).getText().toString();
+
+                try {
+                    list = coder.getFromLocationName(address, 10);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if(list != null){
+                    textView.setText(list.get(0).toString());
+                }
+            }
+        });
+
         LocationManager manager = (LocationManager) getSystemService(LOCATION_SERVICE);
         textView = (TextView)findViewById(R.id.textView);
         String str = "";
