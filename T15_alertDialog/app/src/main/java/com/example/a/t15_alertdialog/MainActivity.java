@@ -60,16 +60,21 @@ public class MainActivity extends ActionBarActivity {
         btnProgressDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProgressDialog dialog = ProgressDialog.show(
+                final ProgressDialog dialog = ProgressDialog.show(
                         MainActivity.this,"", "로딩중", true, false);
 
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                new Thread(new Runnable(){
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(5000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
 
-                dialog.dismiss();
+                        dialog.dismiss();
+                    }
+                }).start();
             }
         });
     }
