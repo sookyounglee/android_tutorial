@@ -54,6 +54,7 @@
         android:layout_below="@id/btnRevGeocode"
         android:id="@+id/textViewAddress"/>
     <EditText
+        android:id="@+id/editAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/textViewAddress"

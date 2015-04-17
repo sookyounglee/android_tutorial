@@ -1,5 +1,6 @@
 package com.example.a.t16_location;
 
+import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -31,7 +33,17 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 EditText editLat = (EditText)findViewById(R.id.editLat);
-                EditText editLon = (EditText)findViewById(R.id.editL)
+                EditText editLon = (EditText)findViewById(R.id.editLon);
+                String strLat = editLat.getText().toString();
+                String strLon = editLon.getText().toString();
+
+                List<Address> list;
+                try{
+                    list = coder.getFromLocation(Double.parseDouble(strLat),
+                            Double.parseDouble(strLon), 10);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
