@@ -1,10 +1,13 @@
 package com.example.a.t16_location;
 
 import android.location.LocationManager;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -15,6 +18,16 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         LocationManager manager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        TextView textView = (TextView)findViewById(R.id.textView);
+        String str = "";
+
+        List<String> providers = manager.getAllProviders();
+        for(int i=0; i<providers.size(); i++){
+            str += "위치 제공자 "+providers.get(i)+"의 상태 : "+
+                    manager.isProviderEnabled(providers.get(i)) + "\n";
+        }
+
+        textView.setText(str);
 
     }
 
