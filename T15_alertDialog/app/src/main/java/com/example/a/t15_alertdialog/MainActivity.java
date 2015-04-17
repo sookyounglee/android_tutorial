@@ -90,13 +90,35 @@ public class MainActivity extends ActionBarActivity {
 
         Button btnProgress2 = (Button)findViewById(R.id.btnProgressDialog2);
         btnProgress2.setOnClickListener(new View.OnClickListener() {
+            ProgressDialog dialog;
             @Override
             public void onClick(View v) {
-                ProgressDialog dialog = new ProgressDialog(MainActivity.this);
+                dialog = new ProgressDialog(MainActivity.this);
                 dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
                 dialog.setMessage("Now Loading...");
+                dialog.setCancelable(false);
                 dialog.show();
-                dialog.setProgress(30);
+                dialog.setProgress(0);
+
+
+                new Thread(new Runnable(){
+                    @Override
+                    public void run() {
+                        int progress = 0;
+                        while(progress<100){
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                            progress++;
+                            dialog.setProgress(progress);
+                        }
+
+                        dialog.dismiss();
+                    }
+                }).start();
             }
         });
 
