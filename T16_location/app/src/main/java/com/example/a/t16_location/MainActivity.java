@@ -37,15 +37,17 @@ public class MainActivity extends ActionBarActivity {
                 String strLat = editLat.getText().toString();
                 String strLon = editLon.getText().toString();
 
-                List<Address> list;
+                List<Address> list = null;
                 try{
                     list = coder.getFromLocation(Double.parseDouble(strLat),
                             Double.parseDouble(strLon), 10);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                EditText editAddress = (EditText)findViewById(R.id.editAddress);
-
+                if(list != null) {
+                    EditText editAddress = (EditText) findViewById(R.id.editAddress);
+                    editAddress.setText(list.get(0).toString());
+                }
             }
         });
 
