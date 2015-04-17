@@ -25,7 +25,13 @@ public class MainActivity extends ActionBarActivity {
             }
         });
         Button btnStop = (Button)findViewById(R.id.btnStop);
-        btnStop.
+        btnStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MyIntentService.class);
+                stopService(i);
+            }
+        });
     }
 
 
