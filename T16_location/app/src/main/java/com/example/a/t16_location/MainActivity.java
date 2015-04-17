@@ -1,5 +1,6 @@
 package com.example.a.t16_location;
 
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -15,10 +16,13 @@ import java.util.List;
 public class MainActivity extends ActionBarActivity {
 
     TextView textView;
+    Geocoder coder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        coder = new Geocoder(this);
 
         LocationManager manager = (LocationManager) getSystemService(LOCATION_SERVICE);
         textView = (TextView)findViewById(R.id.textView);
