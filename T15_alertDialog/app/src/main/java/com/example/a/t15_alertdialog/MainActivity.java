@@ -99,6 +99,14 @@ public class MainActivity extends ActionBarActivity {
                 dialog.setProgress(30);
             }
         });
+
+        Button btnCustomDialog = (Button)findViewById(R.id.btnCutstomDialog);
+        btnCustomDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog(DIALOG_CUSTOM);
+            }
+        });
     }
 
 
