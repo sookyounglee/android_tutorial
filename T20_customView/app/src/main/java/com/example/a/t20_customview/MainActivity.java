@@ -1,17 +1,49 @@
 package com.example.a.t20_customview;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class MainActivity extends ActionBarActivity {
 
+    class MyView extends View {
+        public MyView(Context context) {
+            super(context);
+        }
+
+        public MyView(Context context, AttributeSet attrs) {
+            super(context, attrs);
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            super.onDraw(canvas);
+
+            Paint paint = new Paint();
+            paint.setColor(Color.RED);
+
+            canvas.drawLine(20,50, 100,50, paint);
+            canvas.drawRect(10,110, 150,150, paint);
+            canvas.drawCircle(50,200,30,paint);
+            canvas.drawText("Hello World",10,300,paint);
+        }
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
+        MyView v = new MyView(this);
+        setContentView(v);
     }
 
 
