@@ -1,9 +1,10 @@
 package com.example.a.t26_fragment2;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,6 +13,19 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    public void onMyClick(View v){
+        switch (v.getId()){
+            case R.id.btnAdd:
+                break;
+            case R.id.btnRemove:
+                break;
+            case R.id.btnReplace:
+                break;
+            case R.id.btnHide:
+                break;
+        }
     }
 
 
