@@ -21,6 +21,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent("com.example.a.t23_br3.MyCustomBR");
+                sendBroadcast(i);
             }
         });
     }
