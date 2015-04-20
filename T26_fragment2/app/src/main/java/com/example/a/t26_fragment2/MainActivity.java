@@ -2,6 +2,7 @@ package com.example.a.t26_fragment2;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBarActivity;
@@ -32,8 +33,16 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void onMyClick(View v){
+        Fragment fr = fm.findFragmentById(R.id.frameLayout);
         switch (v.getId()){
             case R.id.btnAdd:
+                MyFragment mf = new MyFragment();
+
+                FragmentTransaction tr = fm.beginTransaction();
+                tr.add(R.id.frameLayout, mf, "counter");
+                tr.addToBackStack(null);
+                tr.commit();
+
                 break;
             case R.id.btnRemove:
                 break;
