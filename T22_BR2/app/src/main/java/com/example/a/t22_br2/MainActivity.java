@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -15,7 +16,23 @@ public class MainActivity extends ActionBarActivity {
     BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Toast.makeText(context, "SMS가 수신되었습니다.", Toast.LENGTH_LONG).show();
+            //Toast.makeText(context, "SMS가 수신되었습니다.", Toast.LENGTH_LONG).show();
+            String action = intent.getAction();
+            String str = action;
+            if(action.equals(Intent.ACTION_BATTERY_CHANGED)){
+                int max = intent.getIntExtra(BatteryManager.EXTRA_SCALE, 0);
+                int val = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
+                int percent = val*100/max;
+
+                str += "val : "+val + " max : "+max+" percent : "+percent;
+            }else if(action.equals(Intent.ACTION_BATTERY_LOW)){
+                str += "battery 부족";
+            }else if (action.equals(Intent.ACTION_POWER_DISCONNECTED)){
+                str += "전원 연결 해제";
+            }
+
+
+            Toast.makeText(context, str, Toast.LENGTH_LONG).show();
         }
     };
 
@@ -30,6 +47,9 @@ public class MainActivity extends ActionBarActivity {
         super.onResume();
         IntentFilter filter = new IntentFilter();
         filter.addAction("android.provider.Telephony.SMS_RECEIVED");
+        filter.addAction(Intent.ACTION_BATTERY_CHANGED);
+        filter.addAction(Intent.ACTION_BATTERY_LOW);
+        filter.addAction(Intent.ACTION_POWER_DISCONNECTED);
         registerReceiver(receiver,filter);
     }
 
