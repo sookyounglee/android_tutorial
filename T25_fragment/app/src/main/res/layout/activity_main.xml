@@ -20,4 +20,12 @@
         android:name="com.example.a.t25_fragment.MyFragment"
         tools:layout="@layout/counter_fragment" />
 
+    <fragment
+        android:layout_below="@id/fragmentCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragmentCounter2"
+        android:name="com.example.a.t25_fragment.MyFragment"
+        tools:layout="@layout/counter_fragment" />
+
 </RelativeLayout>
