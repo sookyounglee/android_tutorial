@@ -1,6 +1,11 @@
 package com.example.a.t24_notification;
 
+import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -28,7 +33,21 @@ public class MainActivity extends ActionBarActivity {
                 v.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        Intent i = new Intent(MainActivity.this, MyNewActivity.class);
+                        PendingIntent pi = PendingIntent.getActivity(MainActivity.this,
+                                0,i,0);
 
+                        Notification.Builder builder = new Notification.Builder(MainActivity.this);
+                        builder.setContentTitle("Content Title");
+                        builder.setContentText("Content Text");
+                        builder.setSubText("Sub Text");
+                        builder.setSmallIcon(android.R.drawable.ic_dialog_info);
+                        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
+                                R.mipmap.ic_launcher);
+                        builder.setLargeIcon(bitmap);
+
+                        Notification noti = builder.build();
+                        manager.notify(1234, noti);
                     }
                 } ,5000);
             }
