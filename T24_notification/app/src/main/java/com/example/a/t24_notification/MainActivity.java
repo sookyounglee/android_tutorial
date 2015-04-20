@@ -45,6 +45,7 @@ public class MainActivity extends ActionBarActivity {
                         Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
                                 R.mipmap.ic_launcher);
                         builder.setLargeIcon(bitmap);
+                        builder.setContentIntent(pi);
 
                         Notification noti = builder.build();
                         manager.notify(1234, noti);
