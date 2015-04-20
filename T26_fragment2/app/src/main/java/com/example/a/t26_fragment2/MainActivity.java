@@ -1,6 +1,7 @@
 package com.example.a.t26_fragment2;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBarActivity;
@@ -22,6 +23,7 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+    FragmentManager fm = getFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
