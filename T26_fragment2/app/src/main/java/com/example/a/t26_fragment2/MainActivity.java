@@ -1,13 +1,27 @@
 package com.example.a.t26_fragment2;
 
+import android.app.Fragment;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBarActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    public static class TextFragment extends Fragment{
+        @Nullable
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View root = inflater.inflate(R.layout.text_fragment, container, false);
+            return root;
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
