@@ -67,6 +67,7 @@ public class MainActivity extends ActionBarActivity {
                         mf = new MyFragment();
                         tr.replace(R.id.frameLayout, mf, "counter");
                     }
+                    tr.addToBackStack(null);
                     tr.commit();
                 }
                 break;
