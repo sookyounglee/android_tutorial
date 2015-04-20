@@ -1,17 +1,38 @@
 package com.example.a.t24_notification;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.NotificationManager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
 
+    NotificationManager manager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        Button btnStart = (Button)findViewById(R.id.btnStart);
+        btnStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Button clicked", Toast.LENGTH_LONG).show();
+
+                v.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                    }
+                } ,5000);
+            }
+        });
     }
 
 
