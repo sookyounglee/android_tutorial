@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -34,17 +35,25 @@ public class MainActivity extends ActionBarActivity {
 
     public void onMyClick(View v){
         Fragment fr = fm.findFragmentById(R.id.frameLayout);
+        FragmentTransaction tr;
         switch (v.getId()){
             case R.id.btnAdd:
                 MyFragment mf = new MyFragment();
 
-                FragmentTransaction tr = fm.beginTransaction();
+                tr = fm.beginTransaction();
                 tr.add(R.id.frameLayout, mf, "counter");
                 tr.addToBackStack(null);
                 tr.commit();
 
                 break;
             case R.id.btnRemove:
+                if(fr == null){
+                    Toast.makeText(this, "fragment 가 없습니다.",Toast.LENGTH_LONG).show();
+                }else{
+                    tr = fm.beginTransaction();
+                    tr.remove(fr);
+                    tr.commit();
+                }
                 break;
             case R.id.btnReplace:
                 break;
