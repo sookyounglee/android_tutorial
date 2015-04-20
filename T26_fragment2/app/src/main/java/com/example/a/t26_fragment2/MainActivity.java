@@ -56,8 +56,32 @@ public class MainActivity extends ActionBarActivity {
                 }
                 break;
             case R.id.btnReplace:
+                if(fr == null){
+                    Toast.makeText(this, "fragment 가 없습니다.",Toast.LENGTH_LONG).show();
+                }else{
+                    tr = fm.beginTransaction();
+                    if(fr.getTag() == "counter"){
+                        TextFragment tf = new TextFragment();
+                        tr.replace(R.id.frameLayout, tf, "text");
+                    }else{
+                        mf = new MyFragment();
+                        tr.replace(R.id.frameLayout, mf, "counter");
+                    }
+                    tr.commit();
+                }
                 break;
             case R.id.btnHide:
+                if(fr == null){
+                    Toast.makeText(this, "fragment 가 없습니다.",Toast.LENGTH_LONG).show();
+                }else{
+                    tr = fm.beginTransaction();
+                    if(fr.isHidden()){
+                        tr.show(fr);
+                    }else{
+                        tr.hide(fr);
+                    }
+                    tr.commit();
+                }
                 break;
         }
     }
